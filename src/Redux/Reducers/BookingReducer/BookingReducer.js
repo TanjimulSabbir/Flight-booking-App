@@ -1,21 +1,17 @@
 import { AddBook } from "../../ActionTypes/BookingTypes";
 
 const initialState = {
-    value: {
-        from: "",
-        to: "",
-        date: "",
-        seatNumber: "",
-        seatType: ""
-    }
+    value: []
 }
+// {
+//     from:"", to:"", date:"", guests:"", ticketClass:""
+// }
 
 const BookingReducer = (state = initialState, action) => {
     switch (action.type) {
         case AddBook:
             return {
-                ...state,
-                value: action.payload,
+                value: [...state.value, action.payload],
             }
         default:
             return state;

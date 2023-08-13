@@ -5,27 +5,34 @@ import guests from "../../assets/img/icons/Vector (1).svg"
 import seatClass from "../../assets/img/icons/Vector (3).svg"
 import { useDispatch } from "react-redux"
 import { AddBooking } from "../../Redux/Actions/BookingAction"
+import { useRef } from "react"
 
 
 function InputedInfo() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const formRef = useRef(null);
+
   const handleSubmitBooking = (event) => {
     event.preventDefault();
+    const form = formRef.current;
     const target = event.target;
-    const from = target.from.value;
-    const to = target.to.value;
-    const date = target.data.value;
-    const guests = target.guests.value;
-    const ticketClass = target.ticketClass.value;
+    const from = target.from?.value;
+    const to = target.to?.value;
+    const date = target.date.value;
+    const guests = target.guests?.value;
+    const ticketClass = target.ticketClass?.value;
     const FlighInfo = { from, to, date, guests, ticketClass }
+    console.log(FlighInfo,"FlightInfo")
     dispatch(AddBooking(FlighInfo))
+    form.reset();
+    toast.success("Booking Added Successfully!")
   }
 
   return (
     <div>
       <div className="mt-[160px] mx-4 md:mt-[160px] relative">
         <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
-          <form className="first-hero lws-inputform" onSubmit={handleSubmitBooking}>
+          <form ref={formRef} className="first-hero lws-inputform" onSubmit={handleSubmitBooking}>
             {/* <!-- From --> */}
             <div className="des-from">
               <p>Destination From</p>
@@ -89,8 +96,8 @@ function InputedInfo() {
             </div>
 
             <button className="addBook bg-green-500" type="submit" id="lws-addBook">
-              <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               <span className="text-sm">Book</span>
             </button>
