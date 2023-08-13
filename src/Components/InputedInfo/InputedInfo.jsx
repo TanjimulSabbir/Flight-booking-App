@@ -16,7 +16,7 @@ function InputedInfo() {
   const handleSubmitBooking = (event) => {
     event.preventDefault();
     if(BookingData.length>=3){
-      return toast.info("You can book maximum 3 times per a day!")
+      return toast.info("You can not book more that 3 per a day!")
     }
     const form = formRef.current;
     const target = event.target;
