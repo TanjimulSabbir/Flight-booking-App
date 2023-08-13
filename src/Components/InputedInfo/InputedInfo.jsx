@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 import destination from "../../assets/img/icons/Frame.svg"
 import guests from "../../assets/img/icons/Vector (1).svg"
 import seatClass from "../../assets/img/icons/Vector (3).svg"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddBooking } from "../../Redux/Actions/BookingAction"
 import { useRef } from "react"
 
@@ -11,9 +11,13 @@ import { useRef } from "react"
 function InputedInfo() {
   const dispatch = useDispatch();
   const formRef = useRef(null);
+  const BookingData = useSelector((state) => state?.AddBooking?.value);
 
   const handleSubmitBooking = (event) => {
     event.preventDefault();
+    if(BookingData.length>=3){
+      return toast.info("You can book maximum 3 times per a day!")
+    }
     const form = formRef.current;
     const target = event.target;
     const from = target.from?.value;
@@ -21,10 +25,10 @@ function InputedInfo() {
     const date = target.date.value;
     const guests = target.guests?.value;
     const ticketClass = target.ticketClass?.value;
-    const FlighInfo = { from, to, date, guests, ticketClass }
-    console.log(FlighInfo,"FlightInfo")
+    const FlighInfo = {id:BookingData.length+1, from, to, date, guests, ticketClass }
+    console.log(FlighInfo,"FlightInfo");
     dispatch(AddBooking(FlighInfo))
-    form.reset();
+    // form.reset();
     toast.success("Booking Added Successfully!")
   }
 

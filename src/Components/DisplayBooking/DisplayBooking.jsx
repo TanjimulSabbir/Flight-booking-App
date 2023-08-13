@@ -1,13 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { BookingDeleteAction } from "../../Redux/Actions/BookingAction";
 
 
 function DisplayBooking() {
+    const dispatch = useDispatch();
     const BookingData = useSelector((state) => state?.AddBooking?.value);
+    const handleDeleteFlight = (id) => {
+        dispatch(BookingDeleteAction(id))
+    }
 
-    // if(BookingData&& BookingData.length>3){
-    //     return toast.info("You can't add more than 3 booking!")
-    // }
     return (
         <div className="table-container" >
             {<table className="booking-table">
@@ -21,30 +23,31 @@ function DisplayBooking() {
                         <th className="text-center">Delete</th>
                     </tr>
                 </thead>
-             {BookingData.length>0? <tbody className="divide-y divide-gray-300/20 w-full" id="lws-previewBooked">
+                {BookingData.length ? <tbody className="divide-y divide-gray-300/20 w-full" id="lws-previewBooked">
                     {/* <!-- Row 1 --> */}
                     {
-                       BookingData.map((Booking) => {
+                        BookingData.map((Booking) => {
+                            const { id, from, to, date, guests, ticketClass } = Booking
                             return (<>
-                                <tr key={Booking.from} className="lws-bookedTable text-black">
+                                <tr key={id} className="lws-bookedTable text-black">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center space-x-3">
-                                            <p className="lws-bookedFrom text-black">{Booking.from}</p>
+                                            <p className="lws-bookedFrom text-black">{from}</p>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <p className="lws-bookedTo text-black">{Booking.to}</p>
+                                        <p className="lws-bookedTo text-black">{to}</p>
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        <p className="lws-bookedDate text-black">{Booking.date}</p>
+                                        <p className="lws-bookedDate text-black">{date}</p>
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        <p className="lws-bookedGustes text-black">{Booking.guests}</p>
+                                        <p className="lws-bookedGustes text-black">{guests}</p>
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        <span className="lws-bookedClass text-black"> {Booking.ticketClass} </span>
+                                        <span className="lws-bookedClass text-black"> {ticketClass} </span>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-6 py-4 text-center" onClick={() => handleDeleteFlight(id)}>
                                         <div className="flex justify-center gap-4">
                                             <button className="lws-remove">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
@@ -58,8 +61,8 @@ function DisplayBooking() {
                                 </tr>
                             </>)
                         })
-                   }
-                </tbody> :<p className="flex justify-center w-full mx-auto p-1 text-green-500">You haven't booked yet!</p>}
+                    }
+                </tbody> : <p className="flex justify-center w-full mx-auto p-1 text-green-500">You haven't booked yet!</p>}
             </table>}
         </div>
     )

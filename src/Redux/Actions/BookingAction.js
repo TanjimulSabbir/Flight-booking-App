@@ -1,8 +1,16 @@
-import { AddBook } from "../ActionTypes/BookingTypes"
+import { ADDBOOK, DElETEBOOK } from "../ActionTypes/BookingTypes"
 
 export const AddBooking = (value) => {
     return {
-        type: AddBook,
+        type: ADDBOOK,
         payload: value,
     }
+}
+
+export const BookingDeleteAction = (value) => {
+    return {
+        type: DElETEBOOK,
+        payload: value,
+    }
+
 }
