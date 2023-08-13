@@ -20,7 +20,6 @@ const BookingReducer = (state = initialState, action) => {
             const BookingData = state.value;
             const DeleteAbleData = action.payload;
             const RestOfData = BookingData.filter((AllData) => AllData.id !== DeleteAbleData);
-           console.log(RestOfData,"RestOfData")
             return {
                 value: RestOfData,
             }
