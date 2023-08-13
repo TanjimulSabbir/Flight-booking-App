@@ -5,11 +5,17 @@ import seatClass from "../../assets/img/icons/Vector (3).svg"
 
 
 function InputedInfo() {
+  
+  const handleSubmitBooking=()=>{
+
+  }
+
+
   return (
     <div>
       <div className="mt-[160px] mx-4 md:mt-[160px] relative">
         <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
-          <form className="first-hero lws-inputform">
+          <form className="first-hero lws-inputform" onSubmit={handleSubmitBooking}>
             {/* <!-- From --> */}
             <div className="des-from">
               <p>Destination From</p>
@@ -72,7 +78,7 @@ function InputedInfo() {
               </div>
             </div>
 
-            <button className="addCity" type="submit" id="lws-addCity">
+            <button className="addBook bg-green-500" type="submit" id="lws-addBook">
               <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>

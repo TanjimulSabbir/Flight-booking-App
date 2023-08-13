@@ -769,7 +769,7 @@ img {
   cursor: pointer;
 }
 
-.addCity {
+.addBook {
   display: flex;
   height: 40px;
   cursor: pointer;
@@ -789,7 +789,7 @@ img {
   transition-duration: 150ms;
 }
 
-.addCity:hover {
+.addBook:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(120 11 205 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
