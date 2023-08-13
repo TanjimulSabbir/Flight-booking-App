@@ -26,9 +26,9 @@ function InputedInfo() {
     const guests = target.guests?.value;
     const ticketClass = target.ticketClass?.value;
     const FlighInfo = {id:BookingData.length+1, from, to, date, guests, ticketClass }
-    console.log(FlighInfo,"FlightInfo");
+    // console.log(FlighInfo,"FlightInfo");
     dispatch(AddBooking(FlighInfo))
-    // form.reset();
+    form.reset();
     toast.success("Booking Added Successfully!")
   }
 
