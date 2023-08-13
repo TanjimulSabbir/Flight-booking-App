@@ -1,6 +1,9 @@
 
 
 function DisplayBooking() {
+
+
+    
     return (
         <div className="table-container" >
             <table className="booking-table">

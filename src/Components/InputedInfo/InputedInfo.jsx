@@ -3,13 +3,22 @@ import { toast } from "react-toastify"
 import destination from "../../assets/img/icons/Frame.svg"
 import guests from "../../assets/img/icons/Vector (1).svg"
 import seatClass from "../../assets/img/icons/Vector (3).svg"
+import { useDispatch } from "react-redux"
+import { AddBooking } from "../../Redux/Actions/BookingAction"
 
 
 function InputedInfo() {
-
+  const dispatch = useDispatch()
   const handleSubmitBooking = (event) => {
     event.preventDefault();
-   return toast.success("Clicked")
+    const target = event.target;
+    const from = target.from.value;
+    const to = target.to.value;
+    const date = target.data.value;
+    const guests = target.guests.value;
+    const ticketClass = target.ticketClass.value;
+    const FlighInfo = { from, to, date, guests, ticketClass }
+    dispatch(AddBooking(FlighInfo))
   }
 
   return (
@@ -71,7 +80,7 @@ function InputedInfo() {
               <p>Class</p>
               <div className="flex flex-row">
                 <img src={seatClass} alt="" />
-                <select className="outline-none px-2 py-2 w-full" name="ticketclassName" id="lws-ticketclassName" required>
+                <select className="outline-none px-2 py-2 w-full" name="ticketClass" id="lws-ticketclassName" required>
                   <option value="" hidden>Please Select</option>
                   <option>Business</option>
                   <option>Economy</option>
