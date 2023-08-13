@@ -2,8 +2,11 @@ import { AddBook } from "../../ActionTypes/BookingTypes";
 
 const initialState = {
     value: {
-        from: "", to: "",
-        date: "", seatNumber: "", seatType: ""
+        from: "",
+        to: "",
+        date: "",
+        seatNumber: "",
+        seatType: ""
     }
 }
 
