@@ -1,15 +1,16 @@
 
+import { toast } from "react-toastify"
 import destination from "../../assets/img/icons/Frame.svg"
 import guests from "../../assets/img/icons/Vector (1).svg"
 import seatClass from "../../assets/img/icons/Vector (3).svg"
 
 
 function InputedInfo() {
-  
-  const handleSubmitBooking=()=>{
 
+  const handleSubmitBooking = (event) => {
+    event.preventDefault();
+   return toast.success("Clicked")
   }
-
 
   return (
     <div>
